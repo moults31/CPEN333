@@ -1,7 +1,8 @@
 #ifndef PHYSICS
 #define PHYSICS
 
-namespace physics {
+namespace physics
+{
     inline double compute_position(double x0, double v, double dt)
     {
         return v*dt + x0;
