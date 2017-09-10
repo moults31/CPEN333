@@ -21,15 +21,7 @@ double Car::getMass(void)
 // Set initial acceleration if on is true
 void Car::accelerate(bool on)
 {
-    if(on)
-    {
-        
-        state.a = physics::compute_acceleration(mass, engine_force);
-    }
-    else
-    {
-        state.a = 0;
-    }
+    accel_on = on;
 }
 
 // Update car's state after one time step
@@ -39,7 +31,7 @@ void Car::drive(double dt)
     double fd = 0.5*RHO_AIR*drag_area*state.v*state.v;
     
     // Compute updated state (x,v,a,t)
-    double acc = physics::compute_acceleration(engine_force - fd, mass);
+    double acc = accel_on ? physics::compute_acceleration(engine_force - fd, mass) : 0;
     double vel = physics::compute_velocity(state.v, state.a, dt);
     double pos = physics::compute_position(state.x, state.v, dt);
     double time = state.t + dt;
@@ -48,8 +40,21 @@ void Car::drive(double dt)
     state.set(pos, vel, acc, time);
 }
 
-// Return the car's current state
-State Car::getState(void)
+// Return a pointer to the car's current state
+State * Car::getState(void)
 {
-    return state;
+    return &state;
+}
+
+// Drive but ignore air resistance
+void Herbie::drive(double dt)
+{
+    // Compute updated state (x,v,a,t)
+    double acc = physics::compute_acceleration(engine_force, mass);
+    double vel = physics::compute_velocity(state.v, state.a, dt);
+    double pos = physics::compute_position(state.x, state.v, dt);
+    double time = state.t + dt;
+    
+    // Store results in car's state member
+    state.set(pos, vel, acc, time);
 }

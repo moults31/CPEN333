@@ -58,10 +58,5 @@ int main()
         << ", v: " << v << ", x: " << x << ", fd: " << fd << std::endl;
     }
     
-    State::State s1;
-    std::cout << s1 << std::endl;
-    State::State s2(1.0, 2.0, 3.0, 4.0);
-    std::cout << s2 << std::endl;
-    
     return 0;
 }
