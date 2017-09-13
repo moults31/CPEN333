@@ -14,11 +14,11 @@ bin/drag_race.o: src/drag_race.cpp
 
 # highway project
 bin/highway: bin/highway.o bin/Car.o
-	g++ -Wall bin/highway.o bin/Car.o -o bin/highway
+	g++ -Wall -std=c++11 bin/highway.o bin/Car.o -o bin/highway
 
 bin/highway.o: src/highway.cpp
-	g++ -Wall -c src/highway.cpp -o bin/highway.o
+	g++ -Wall -std=c++11 -c src/highway.cpp -o bin/highway.o
 
 bin/Car.o: src/Car.cpp
-	g++ -Wall -c src/Car.cpp -o bin/Car.o
+	g++ -Wall -std=c++11 -c src/Car.cpp -o bin/Car.o
 

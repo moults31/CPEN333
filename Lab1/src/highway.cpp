@@ -5,8 +5,8 @@
 #include "physics.h"
 #include "State.h"
 
-#define FLEETSIZE 100 // cars
-#define SIMLENGTH 300 // seconds
+#define FLEETSIZE 20 // cars
+#define SIMLENGTH 100 // seconds
 #define MAXSPEED 27.8 // m/s
 
 int main(void)
@@ -22,23 +22,18 @@ int main(void)
         cars.push_back(new Herbie);
     }
     
-    // Tell cars to begin
-    for (Car *car : cars)
-    {
-        car->accelerate(true);
-    }
+    double dt = 1;
     
-    int dt = 5;
-    
-    for(int t=0; t*dt<300; t++)
+    for(int t=0; t<SIMLENGTH; t++)
     {
         // Update car states
         for (Car *car : cars)
         {
-            if(car->getState()->v > MAXSPEED && car->getModel() != "Herbie") car->accelerate(false);
+            if(car->getState()->v > MAXSPEED) car->accelerate(false);
             else    car->accelerate(true);
             
             car->drive(dt);
+            //std::cout << car->getModel() << ": " << car->getState()->v << std::endl;
         }
     }
     
