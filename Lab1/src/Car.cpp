@@ -27,12 +27,13 @@ void Car::accelerate(bool on)
 // Update car's state after one time step
 void Car::drive(double dt)
 {
-    //std::cout << state.v << " " << accel_on << std::endl;
     // Update drag force
     double fd = 0.5*RHO_AIR*drag_area*state.v*state.v;
     
     // Compute updated state (x,v,a,t)
-    double acc = accel_on ? physics::compute_acceleration(engine_force - fd, mass) : 0;
+    double acc = accel_on ?
+                    physics::compute_acceleration(engine_force - fd, mass) :
+                    physics::compute_acceleration(-1 * fd, mass);
     double vel = physics::compute_velocity(state.v, acc, dt);
     double pos = physics::compute_position(state.x, vel, dt);
     double time = state.t + dt;

@@ -5,7 +5,7 @@
 #include "physics.h"
 #include "State.h"
 
-#define FLEETSIZE 20 // cars
+#define FLEETSIZE 100 // cars
 #define SIMLENGTH 100 // seconds
 #define MAXSPEED 27.8 // m/s
 
@@ -33,7 +33,7 @@ int main(void)
             else    car->accelerate(true);
             
             car->drive(dt);
-            //std::cout << car->getModel() << ": " << car->getState()->v << std::endl;
+            std::cout << car->getModel() << " -- " << *(car->getState()) << car->getState()->v << std::endl;
         }
     }
     
