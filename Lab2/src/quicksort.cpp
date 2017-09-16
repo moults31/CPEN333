@@ -2,6 +2,8 @@
 #include <thread>
 #include <vector>
 #include <chrono>
+#include <math.h>
+#include <random>
 
 #define _MAXTHREADS 6
 
