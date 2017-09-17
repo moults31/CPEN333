@@ -11,3 +11,10 @@ bin/pi: bin/pi.o
 
 bin/pi.o: src/pi.cpp
 	g++ -Wall -std=c++11 -c src/pi.cpp -o bin/pi.o
+
+# integration project
+bin/integration: bin/integration.o
+	g++ -Wall -std=c++11 bin/integration.o -o bin/integration
+
+bin/integration.o: src/integration.cpp
+	g++ -Wall -std=c++11 -c src/integration.cpp -o bin/integration.o
