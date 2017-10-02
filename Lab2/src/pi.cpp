@@ -16,13 +16,11 @@ double estimate_pi_multithread(int nsamples);
 double estimate_pi(int nsamples) {
     std::vector<bool> hits(nsamples);
     double nhits = 0;
-    double nmisses = 0;
     
     for(int i=0; i<nsamples; i++)
     {
         pi_sampler(hits, i);
         if(hits[i]) nhits++;
-        else nmisses++;
     }
     
     double pi = nhits/nsamples;
@@ -85,7 +83,7 @@ double estimate_pi_multithread_naive(int nsamples) {
   return pi;
 }
 
-// Increments the number of
+// Increments the number of pi hits
 void pi_hits(std::vector<int> &hits, int tidx, int nsamples) {
     // single instance of random engine and distribution
     static std::default_random_engine rnd(

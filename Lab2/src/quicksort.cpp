@@ -5,7 +5,7 @@
 #include <math.h>
 #include <random>
 
-#define _MAXTHREADS 6
+#define _MAXTHREADS 10
 
 // partitions elements low through high (inclusive)
 // around a pivot and returns the pivot index

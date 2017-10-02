@@ -5,9 +5,10 @@
 #include <vector>
 #include <chrono>
 
-#define NUMSAMPLES 1000000
+#define NUMSAMPLES 10000000
 #define RADIUS 1.0
-#define DENSITY density1
+#define VOL RADIUS*RADIUS*RADIUS*4.0/3.0*3.14
+#define DENSITY density2
 
 using namespace std;
 
@@ -196,10 +197,11 @@ pt_t centreOfMass(vector<double>& xrho, vector<double>& yrho,
     zsum += zrho[i];
   }
   
-  rhoavg = rhosum/n;
-  xavg = xsum/n;
-  yavg = ysum/n;
-  zavg = zsum/n;
+  rhoavg = VOL*rhosum/n;
+  
+  xavg = VOL*xsum/n;
+  yavg = VOL*ysum/n;
+  zavg = VOL*zsum/n;
   
   c.x = xavg/rhoavg;
   c.y = yavg/rhoavg;
